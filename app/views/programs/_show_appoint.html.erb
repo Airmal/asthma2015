@@ -1,0 +1,29 @@
+<% if user_signed_in? %>
+  <% if @invitate_cd.nil? %>
+    <%= link_to '#appointModel', 
+      :id => "appointment-program-#{@program.id}-appoint",
+      :class => 'btn btn-lg btn-default btn-post-appoint',
+      :data => {:toggle=>"modal"} do %>
+        <i class="glyphicon glyphicon-plus"></i> 
+        <span class="text">预约报名</span>
+    <% end -%>
+  <% else %>
+    <%= link_to 'javascript:void(0)', 
+      :id => "appointment-program-#{@program.id}-appoint",
+      onclick: "program_show.ajax_post_appoint(#{@program.id}, '#{program_appoint_path(@program)}', #{@invitate_cd})", 
+      :class => 'btn btn-lg btn-default btn-post-appoint',
+      :data => {:toggle=>"modal"} do %>
+        <i class="glyphicon glyphicon-plus"></i> 
+        <span class="text">预约报名</span>
+    <% end -%>
+  <% end -%>
+<% else %>
+
+  <%= link_to '#loginModel', 
+    :id => "appointment-program-#{@program.id}-appoint",
+    :class => 'btn btn-lg btn-default btn-post-appoint',
+    :data => {:toggle=>"modal"} do %>
+      <i class="glyphicon glyphicon-plus"></i> 
+      <span class="text">预约报名</span>
+  <% end -%>
+<% end -%>

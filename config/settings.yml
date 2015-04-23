@@ -1,0 +1,23 @@
+defaults: &defaults
+  app_name: 哮喘联盟
+  app_page_perfix: 'ym'
+  admin_email: dothide@gmail.com
+  default_cover: '/default.png'
+  default_file_path: '/public/courseware/default.pdf'
+  default_remote_url: 'http://weblbs.yystatic.com/s/72/2320351795/medicalscene.swf'
+  default_pdf_image: '/default_pdf_image.jpg'
+  # 可提前30天预约
+  appointment_exdate: 30 
+  programs_images_url: '/system/programs/'
+
+development:
+  <<: *defaults
+  web_socket_addr: 'yunmed-2015-website.dev:3245/websocket'
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  web_socket_addr: 'www.yunmed.net:3245/websocket'
+  # admin_email: admin@yunmed.net

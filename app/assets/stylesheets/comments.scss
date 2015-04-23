@@ -1,0 +1,57 @@
+@charset "utf-8";
+/* CSS Document */
+div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, a, blockquote, th { margin: 0;padding: 0;}
+ol, ul { list-style: none; }
+table {border-collapse:collapse; border-spacing: 0px;}
+fieldset, img { border: 0; }
+em, i, s {font-style:normal;}
+input { vertical-align:middle;}
+body { margin:0px auto; font-family:"微软雅黑"; }
+a{ text-decoration:none;}
+
+/* 首页 */
+#content2015{ margin:0 auto; width:960px; overflow:hidden; }
+.div01{ margin:10px 0 20px 0;}
+.fleft{ width:640px; float:left;}
+.div02{ font-size:15px; color:#a8a8a8; overflow:hidden; margin-top:20px; } 
+.div02 span{ width:640px; height:150px; line-height:28px;}
+.div02 li{ width:640px; line-height:30px; color:#a8a8a8;}
+.div03{ height:35px; margin-bottom:10px;}
+.div04{ margin-bottom:20px; }
+.div04 th{ color:#e25c01; height:36px; line-height:36px; }
+.div04 td{ height:36px; line-height:36px; }
+
+.fright{ width:305px; float:right;}
+.div05{ margin:20px 0; width:305px; height:244px;}
+.div06{ margin:20px 0; width:305px; height:175px; background-image:url('title05.jpg');}
+.div07{ margin:20px 0; width:305px; height:78px;}
+.baxterContent03{ background-color:#f2f2f2; color:#333; height:50px; line-height:50px; font-size:12px; font-family:Arial, Helvetica, sans-serif; text-align:center;}
+/* update by DotHide */
+
+.countdown { height:100px; padding-left: 25px; padding-top:70px; background-image:url('CaseIcon04.jpg'); }
+
+#countdown_dashboard { }
+
+.dash { width: 55px; height: 68px; background: transparent url('dash.png') 0 0 no-repeat; float: left; margin-right: 12px; position: relative; }
+
+.dash .digit {
+  font-size: 24pt;
+  font-weight: bold;
+  float: left;
+  width: 26px;
+  line-height: 48px;
+  text-align: center;
+  font-family: Times;
+  color: #555;
+  position: relative;
+}
+
+.dash_title {
+  position: absolute;
+  display: block;
+  bottom: 0px;
+  right: 20px;
+  font-size: 12pt;
+  color: #fff;
+  letter-spacing: 2px;
+}

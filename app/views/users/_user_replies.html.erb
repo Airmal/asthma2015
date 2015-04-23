@@ -1,0 +1,17 @@
+<div class="user-fade">
+  <h2>我的回复</h2>
+  <ul id="replies_ul" class="list">
+    <% current_user.replies.each do |reply| %>
+      <li id="<%= reply.id %>">
+        <div class="title">
+          <%= link_to reply.content, reply.question %>           
+        </div>
+        <div class="content">
+          <div class="question-program">&nbsp;&nbsp;——<%= link_to reply.question.title, reply.question %></div>
+        <div class="info"><%= reply.updated_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
+        </div>
+      </li>
+    <% end -%>
+  </ul>
+</div>
+

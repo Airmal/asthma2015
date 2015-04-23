@@ -1,0 +1,19 @@
+<p>剩余邀请码：<%= @object.maximum - @object.enroll_num %>份</p>
+<p>项目号：<%= @object.id %></p>
+
+<% if @object.maximum == @object.enroll_num %>
+  <h6 style="color: red;">邀请码不足，无法申请</h6>
+  <input type="text" id="num_purchase" disabled='true'></input>
+  <%= link_to '提交', 'javascript:void(0)', 
+    :id => "purchase_submit",
+    :class => 'btn btn-sm btn-primary',
+    :disabled => 'true' %>
+
+<% else %>
+<input type="text" id="num_purchase"></input>
+  <%= link_to '提交', 'javascript:void(0)', 
+    :id => "purchase_submit",
+    :onclick => "purchase_create.ajax_post_purchase(#{@object.id})",
+    :class => 'btn btn-sm btn-primary' %>
+<% end -%>
+

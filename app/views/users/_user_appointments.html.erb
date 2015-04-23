@@ -1,0 +1,15 @@
+<div class="user-fade">
+  <h2>我的课程</h2>
+  <ul id="all_appointments_ul" class="list">
+    <% current_user.appointments.each do |appointment| %>
+      <li id="<%= appointment.id %>">
+        <div class="title">
+          <%= link_to appointment.program.title, appointment.program %>
+        </div>
+        <div class="content">
+          <div class="info">您已预约！&nbsp;<%= appointment.updated_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
+        </div>
+      </li>
+    <% end -%>
+  </ul>
+</div>

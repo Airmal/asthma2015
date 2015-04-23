@@ -1,0 +1,19 @@
+<div class="user-fade">
+  <h2>我的提问</h2>
+  <ul id="question_ul" class="list">
+    <% current_user.questions.each do |question| %>
+      <li id="<%= question.id %>">
+        <div class="title">
+          <%= link_to question.title, question %> 
+          <span class="info"><%= "回复·#{question.replies.size}次" if question.replies.size > 0 %></span>
+          
+        </div>
+        <div class="content">
+          <div class="question-program">&nbsp;&nbsp;——<%= link_to question.program.title, question.program %></div>
+          <div class="info"><%= question.updated_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
+        </div>
+      </li>
+    <% end -%>
+  </ul>
+</div>
+

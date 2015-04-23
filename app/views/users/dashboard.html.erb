@@ -1,0 +1,85 @@
+<div class="bg-gray">
+  <div id="<%= get_page_id('users', 'dashboard') %>" class="container">
+    <div class="user-dashboard">
+      <div class="sider pull-left">
+        <div class="profile">
+          <div class="avator img-circle">
+            <i class="fa fa-2x fa-user"></i>
+          </div>
+          <h2 class="username"><%= @user.username %></h2>
+          <div class="points">
+            当前积分： <span class="point"><%= @userpoint %></span>
+          </div>
+          <div class="db-list" id="db-list">
+            <ul role="tablist">
+              <li role="presentation" class="db-item active" id="assets-center">
+                <%= link_to '#center', :"data-toggle" => 'tab', :role => 'tab', id: 'center-tab' do %>
+                  控制面板 <i class="fa fa-angle-right"></i>
+                <% end -%>
+              </li>
+              <li role="presentation" class="db-item" id="assets-programs">
+                <%= link_to '#programs', :"data-toggle" => 'tab', :role => 'tab', id: 'programs-tab' do %>
+                  我的课程 <%= "(#{current_user.appointments.length})" if current_user.appointments.length > 0%> <i class="fa fa-angle-right"></i>
+                <% end -%>
+              </li>
+              <li role="presentation" class="db-item" id="assets-comments">
+                <%= link_to '#comments', :"data-toggle" => 'tab', :role => 'tab', id: 'comments-tab' do %>
+                  我的短评 <%= "(#{current_user.comments.length})" if current_user.comments.length > 0%> <i class="fa fa-angle-right"></i>
+                <% end -%>
+              </li>
+              <li role="presentation" class="db-item" id="assets-questions">
+                <%= link_to '#questions', :"data-toggle" => 'tab', :role => 'tab', id: 'questions-tab' do %>
+                  我的问题 <%= "(#{current_user.questions.length})" if current_user.questions.length > 0%> <i class="fa fa-angle-right"></i>
+                <% end -%>
+              </li>
+              <li role="presentation" class="db-item" id="assets-replies">
+                <%= link_to '#replies', :"data-toggle" => 'tab', :role => 'tab', id: 'replies-tab' do %>
+                  我的回复 <%= "(#{current_user.replies.length})" if current_user.replies.length > 0%> <i class="fa fa-angle-right"></i>
+                <% end -%>
+              </li>
+              <li role="presentation" class="db-item" id="assets-points">
+                <%= link_to '#points', :"data-toggle" => 'tab', :role => 'tab', id: 'points-tab' do %>
+                  我的积分 (<%= @userpoint %>) <i class="fa fa-angle-right"></i>
+                <% end -%>
+              </li>
+              <li role="presentation" class="db-item" id="assets-settings">
+                <%= link_to '#settings', :"data-toggle" => 'tab', :role => 'tab', id: 'settings-tab' do %>
+                  我的账户 <i class="fa fa-angle-right"></i>
+                <% end -%>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="main-content pull-left">
+        <div id="assets-notice" class="notice">
+          <i class="fa fa-volume-up"></i><span style="font-size:10px;color:#808080"> 直播预告:<%= @liveProgram.online_date.strftime("%m月%d日") %> 
+          <%= @liveProgram.title %>:<%= @liveProgram.speakers %>，请抓紧时间预约。</span>
+          <ul class="notice-box">
+            <li class="notice-item"></li>
+            <li class="notice-item"></li>
+          </ul>
+        </div>
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="center" aria-labelledby="center-tab">
+            <%= render partial: 'user_center' %>
+          </div>
+          <div class="tab-pane fade" id="programs" aria-labelledby="programs-tab">
+            <%= render partial: 'user_appointments' %>
+          </div>
+          <div class="tab-pane fade" id="comments" aria-labelledby="comments-tab">
+            <%= render partial: 'user_comments' %>
+          </div>
+          <div class="tab-pane fade" id="questions" aria-labelledby="questions-tab">
+            <%= render partial: 'user_questions' %>
+          </div>
+          <div class="tab-pane fade" id="replies" aria-labelledby="replies-tab">
+            <%= render partial: 'user_replies' %>
+          </div>
+          <div class="tab-pane fade" id="points" aria-labelledby="points-tab"></div>
+          <div class="tab-pane fade" id="settings" aria-labelledby="settings-tab"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

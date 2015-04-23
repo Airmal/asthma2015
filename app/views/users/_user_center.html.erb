@@ -1,0 +1,73 @@
+<div class="user-fade">
+    <h2>控制面板</h2>
+  <div class="user-center">
+    <div class="center-col appoints">
+      <h2>我的课程</h2>
+      <ul id="all_appointments_ul" class="list">
+        <% current_user.appointments.order('updated_at desc').limit(5).each do |appointment| %>
+          <li id="<%= appointment.id %>">
+            <div class="title">
+              <%= link_to appointment.program.title, appointment.program %>
+            </div>
+            <div class="content">
+              <div class="info">您已预约！&nbsp;<%= appointment.created_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
+            </div>
+          </li>
+        <% end -%>
+        <%= link_to '#programs', :"data-toggle" => 'tab', :role => 'tab', id: 'programs-tab', :class =>'serch-all_appoints' do %>
+          查看所有课程 <i class="glyphicon glyphicon-chevron-right"></i>
+        <% end -%>
+      </ul>
+    </div>
+    <div class="col-md-6 center-col">
+      <h2>我的短评</h2>
+      <ul id="all_comments_ul" class="list">
+        <% current_user.comments.order('updated_at desc').limit(3).each do |comment| %>
+          <li id="<%= comment.id %>">
+            <div class="title">
+              <%= link_to comment.program.title, comment.program %>
+            </div>
+            <div class="rank">
+              <span class="star">
+                <% comment.rank.times do %>
+                  <i class="glyphicon glyphicon-star get"></i>
+                <% end -%>
+                <% (5 - comment.rank).times do %>
+                  <i class="glyphicon glyphicon-star"></i>
+                <% end -%>
+              </span>
+            </div>
+            <div class="content">
+              <%= comment.content %>
+              <div class="info"><%= comment.created_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
+            </div>
+          </li>
+        <% end -%>
+      </ul>
+      <%= link_to '#comments', :"data-toggle" => 'tab', :role => 'tab', id: 'comments-tab' do %>
+        查看所有短评 <i class="glyphicon glyphicon-chevron-right"></i>
+      <% end -%>
+    </div>
+    <div class="col-md-6 center-col question-right">
+      <h2 class="padding-left">我的提问</h2>
+      <ul id="question_ul" class="list ul-border">
+        <% current_user.questions.order('updated_at desc').limit(3).each do |question| %>
+          <li id="<%= question.id %>">
+            <div class="title">
+              <%= link_to question.title, question %> 
+              <span class="info"><%= "回复·#{question.replies.size}次" if question.replies.size > 0 %></span>
+              
+            </div>
+            <div class="content">
+              <div class="question-program">&nbsp;&nbsp;——<%= link_to question.program.title, question.program %></div>
+              <div class="info"><%= question.updated_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
+            </div>
+          </li>
+        <% end -%>
+      </ul>
+      <%= link_to '#questions', :"data-toggle" => 'tab', :role => 'tab', id: 'questions-tab', :class => 'padding-left' do %>
+        查看所有提问 <i class="glyphicon glyphicon-chevron-right"></i>
+      <% end -%>
+    </div>
+  </div>
+</div>

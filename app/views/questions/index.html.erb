@@ -1,0 +1,23 @@
+<div class="bg-gray">
+  <div id="<%= get_page_id('quesions', 'index') %>" class="container">
+    <div class="question-index">
+      <div class="main-content container">
+        <div class="tab-content">
+          <h2 class="modal-title" id="myModalLabel">全部问题</h2>
+          <ul id="question_ul" class="list">
+            <% @questions.each do |question| %>
+              <li id="<%= question.id %>">
+                <div class="content">
+                  <h3 class="question-title"><%= link_to question.title, question %> <span class="replies-num"><%= question.replies.size if question.replies.size > 0 %></span></h3>
+                  <span class="question-user"><%= User.find(question.asker_id).username %></span>
+                  <span class="question-time"><%= question.created_at.strftime("%Y-%m-%d") %></span>
+                </div>
+              </li>
+            <% end -%>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

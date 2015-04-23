@@ -1,0 +1,23 @@
+<table class="table table-condensed table-striped">
+  <tbody>
+    <% @purchases.each do |purchase| %>
+      <tr class="purchase_row" id="<%= purchase.id %>">
+          <td>
+            <h3 class="purchase-program"><%= purchase.program.title %></h3>
+            <span class="purchase-user">请购人：<%= Admin.find(purchase.admin_id).administrator_name %></span>
+            <span class="purchase-user">请购数量：<%= purchase.num_purchase %></span>
+            <span class="purchase-time">申请时间：<%= purchase.created_at.strftime("%Y.%m.%d %R") %></span>
+          </td>
+          <td style="text-align: right;padding: 30px 15px;">
+              <%= link_to 'javascript:void(0)', 
+                :id => "purchase_submit",
+                :onclick => "purchase_create.ajax_post_commit_purchase(#{purchase.id})",
+                :class => 'btn btn-info' do %>
+                <i class="icon-white icon-ok"></i> 通过
+              <% end -%>
+        </td>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>
+

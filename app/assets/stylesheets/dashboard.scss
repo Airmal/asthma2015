@@ -1,0 +1,186 @@
+#ym-60476417 {
+  .user-dashboard {
+    width: 1100px;
+    min-height: 1000px;
+    margin: 0 auto;
+    .sider {
+      width: 210px;
+      margin-top: 20px;
+      .profile {
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #eee;
+        padding: 20px 0;
+        width: 100%;
+        text-align: center;
+        .avator {
+          background-color: #949AFF;
+          border: 2px solid #ddd;
+          color: #fff;
+          width: 64px;
+          height: 64px;
+          margin: 0 auto;  
+          padding: 16px;
+          margin-bottom: 10px;
+        }
+        h2.username { 
+          height: 24px;
+          color: #474e5d;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 24px;
+        }
+        .points {
+          margin: 10px 0 25px;
+        }
+
+        .db-list {
+          min-height: 440px;
+          margin-top: -1px;
+          padding-bottom: 13px;
+          text-align: left;
+          li {
+            height: 44px;
+            line-height: 44px;
+            font-weight: 500;
+            a {
+              position: relative;
+              padding-left: 46px;
+              height: 44px;
+              display: block;
+              font-size: 14px;
+              color: #505254;
+              i {
+                position: absolute;
+                top: 14px;
+                right: 40px;
+                height: 10px;
+              }
+              &:hover { 
+                background-color: #dce0e9; 
+                text-decoration: none;
+              }
+              &:link {
+                text-decoration: none;
+              }
+            }
+            &.active {
+              width: 210px;
+              height: 42px;
+              border-top: 1px solid #ced4e0;
+              border-bottom: 1px solid #ced4e0;
+              border-right: 1px solid #ced4e0;
+              background-color: #9DDDBD;
+              font-weight: 700;
+              line-height: 42px;
+              a:hover { 
+                background-color: #9DDDBD; 
+                text-decoration: none;
+              }
+            }
+          }
+        }
+      }
+    }
+    .main-content {
+      margin-top: 20px;
+      background-color: #fff;
+      border: 1px solid #eee;
+      border-left: 0;
+      padding: 0 0 20px;
+      width: 890px;
+      .notice {
+        margin: 20px;
+      }
+      .tab-content {
+        margin: 20px;
+        min-height: 1000px;
+      }
+    }
+  }
+  .user-fade {
+    .user-center {
+      h2 {
+        font-size: 15px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+      .center-col{
+        padding-left: 0px;
+        // background-color: #dcdcdc
+        .title {
+          font-size: 13px;
+        }
+        .padding-left {
+          padding-left: 15px;
+        }
+        .ul-border {
+          border-left: 1px solid #dcdcdc;
+          padding-left: 15px;
+        }
+        ul.list>li {
+          height: 100px;
+          display: inline-block;
+        }
+      }
+      ul {
+        padding: 0 0 10px;
+        li {
+          border-bottom: 0px solid #dcdcdc;
+          margin-top: 5px;
+        }
+      }
+      .appoints {
+        border-bottom: 1px solid #dcdcdc;
+      }
+    }
+    h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    ul li {
+      border-bottom: 1px solid #dcdcdc;
+      margin-top: 5px;
+    }
+    .title {
+      font-size: 16px;
+    }
+    .info {  
+      font-size: 12px;
+      color: #bbb;
+    }
+    .rank {
+      margin-top: 5px;
+      height: 21px;
+      .star {
+        color: #eee;
+        float: left;
+        padding: 0 3px 0 0;
+        line-height: 1.5em;
+        height: 1.5em;
+        .get {
+          color: #1caaea;
+        }
+      }
+    }
+    .content {
+      margin: 5px 0 20px;
+      color: #666;
+      .question-program a{
+        font-size: 12px;
+        color: #808080;
+      }
+    }
+  }
+}
+
+@media (min-width: 970px) and (max-width: 1200px) {
+  #ym-60476417 {
+    .user-dashboard {
+      width: 940px;
+      .main-content {
+        width: 730px;
+      }
+    }
+  }
+}

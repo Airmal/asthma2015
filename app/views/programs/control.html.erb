@@ -1,0 +1,19 @@
+
+
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4 text-center">
+    <%= hidden_field_tag 'program_id', params[:id] %>
+    当前页码：<span id="current_page_index"> <%= @current_page %> </span><br>
+    <%= link_to '上一页', 'javascript:void(0)', onclick: 'programs_control.prev_page()' %> | <%= link_to '下一页', 'javascript:void(0)', onclick: 'programs_control.next_page()' %>&nbsp;&nbsp; <%= link_to '直播结束', 'javascript:void(0)', onclick: 'programs_control.save_timeLine()' %>
+  </div>
+  <div class="col-sm-4">
+  </div>
+</div>
+
+<script type="text/javascript">
+  (function(){
+    var socket_addr = "<%= Settings.web_socket_addr %>";
+    programs_control.init(socket_addr);
+  })()
+</script>

@@ -1,0 +1,29 @@
+ol, ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+input {
+  outline: none;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 100;
+  font-size: 12px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.cf:before {
+  content: '';
+  display: table;
+}
+
+.cf:after {
+  clear: both;
+  content: '';
+  display: table;
+}

@@ -1,0 +1,292 @@
+<div class="bg-gray">
+  <div id="<%= get_page_id('programs', 'show') %>" class="container">
+    <div class="program-show">
+      <div class="owl-wrapper-outer">
+        <div class="wrap program-stage owl-wrapper">
+          <div class="scroll-stage cf">
+            <div class="img pull-left">
+              <%= image_tag @program.cover %>
+            </div>
+            <div class="content pull-left">
+              <h2><%= @program.title %></h2>
+              <p class="rank">
+                <span class="program-info-star">
+                  <% @avgrank.times do %>
+                    <i class="glyphicon glyphicon-star get"></i>
+                  <% end -%>
+                  <% (5 - @avgrank).times do %>
+                    <i class="glyphicon glyphicon-star"></i>
+                  <% end -%>
+                </span>
+                <span class="score"><%= @avgrankTof %></span>
+                <span class="number"><%= "（#{@program.comments.size}人已评价）" if @program.comments.size > 0 %></span>
+              </p>
+              <p class="info"><%= @program.organization %></p>
+              <p class="info"><%= @program.speakers.join('、') %></p>
+              <input type="hidden" id="sTime" value="<%= @program.online_date.strftime("%Y.%m.%d %T") %>" ></input>
+
+              <!-- 直播/录播 -->
+              <% if @program.live_or_replay == 1 %>
+                <!-- 进入直播 -->
+                <p id="temple" class="countdown">直播倒计时：</p>
+                <div class="bottom">
+                  <!-- 用户预约显示 -->
+                  <% if user_signed_in? && (@program.appoint_state_by_user(current_user.id) == Appointment::STATE[:normal]) %>
+                    <span class="appoint-success"> <i class="fa fa-check-circle"></i> 您已预约！</span>
+                    <%= link_to '取消预约', 'javascript:void(0)',
+                      :id => "appointment-program-#{@program.id}-unappoint",
+                      onclick: "program_show.ajax_post_unappoint(#{@program.id}, '#{program_unappoint_path(@program)}')",
+                      :class => 'btn btn-sm btn-danger' %>
+                  <% else %>
+                    <%= render partial: 'show_appoint' %>
+                  <% end -%>
+                  <!-- 直播过期后，无法进入直播 -->
+                  <% if !@program.offline_date.nil? && @program.offline_date <= Time.now  %>
+                    <%= link_to 'javascript:void(0)', 
+                      :id => 'get_into_live',
+                      :class => 'btn btn-lg btn-default show-next',
+                      :disabled =>'disabled' do %>
+                      <span class="text">进入直播</span>
+                    <% end -%>
+                  <% else %>
+                    <%= link_to 'javascript:void(0)', 
+                      :id => 'get_into_live',
+                      :class => 'btn btn-lg btn-default show-next' do %>
+                      <span class="text">进入直播</span>
+                    <% end -%>
+                  <% end -%>
+                  <span class="number"><%= "（已有#{@program.valid_total_appointments.size}人报名）" if @program.valid_total_appointments.size > 0 %></span>
+                </div>
+              <% else %>
+                <!-- 观看录播 -->
+                <div class="bottom">
+                  <!-- 直播过期后，无法进入直播 -->
+                  <%= link_to 'javascript:void(0)', 
+                    :id => 'get_into_live',
+                    :class => 'btn btn-lg btn-default show-next' do %>
+                    <span class="text">观看录播</span>
+                  <% end -%>
+                </div>
+              <% end -%>
+            </div>
+          </div>
+          <%= render partial: 'show_live' %>
+        </div>
+      </div>
+
+      <div class="sider pull-left">
+        <div class="share-block">
+         <!-- JiaThis Button BEGIN -->
+        <div class="jiathis_style_32x32">
+          <span class="jiathis_txt">分享：</span>
+          <span class="icons"><a class="jiathis_button_tsina"></a></span>
+          <a class="jiathis_button_tqq"></a>
+          <a class="jiathis_button_weixin"></a>
+          <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+        <a class="jiathis_counter_style"></a>
+        </div>
+        <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+        <!-- JiaThis Button END -->
+        </div>
+        <div class="speakers-block">
+          <h2>节目嘉宾</h2>
+          <hr>
+          <div class="speakers">
+            <% @program.speakers.each do |speaker| %>
+              <p class="name"><%= speaker %></p>
+            <% end -%>
+          </div>
+        </div>
+      </div>
+
+      <!-- 预约模态框（Modal） -->
+      <div class="modal fade" id="appointModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+              邀请码：<input id="invitate_cd" class="form-control input-invitate" maxlength="8" placeholder="8位邀请码"></input>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <%= link_to 'javascript:void(0)', 
+                :id => "new-appointment",
+                onclick: "program_show.ajax_post_appoint(#{@program.id}, '#{program_appoint_path(@program)}')", 
+                :class => 'btn btn-md btn-default' do %>
+                  <span class="text">提交</span>
+              <% end -%>
+              <%= link_to 'javascript:void(0)', 
+                :id => "new-appointment",
+                onclick: "program_show.ajax_post_appoint(#{@program.id}, '#{program_appoint_path(@program)}')", 
+                :class => 'btn btn-md btn-default' do %>
+                  <span class="text">我没有邀请码，直接预约</span>
+              <% end -%>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+      <!-- 短评模态框（Modal） -->
+      <%= hidden_field_tag 'program_id', @program.id %>
+      <div class="modal fade" id="commentModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">我的短评</h4>
+            </div>
+            <div class="modal-body">
+              星级：<span class="star">
+                      <% 5.times do |i| %>
+                        <i id="star_<%= i %>" class="glyphicon glyphicon-star my-comment-star"></i>
+                      <% end -%>
+                    </span></br>
+              内容：<textarea id="comment_content" class="form-control" maxlength="300", rows="3"></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <%= link_to '提交', 'javascript:void(0)', 
+                :id => "comment-program-#{@program.id}",
+                :onclick => "program_show.ajax_post_comment(#{@program.id}, '#{program_comment_path(@program)}')",
+                :class => 'btn btn-sm btn-primary' %>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+      <!-- 提问模态框（Modal） -->
+      <div class="modal fade" id="questionModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">我的提问</h4>
+            </div>
+            <div class="modal-body">
+              标题：<input type="text" id="question_title"> </br>
+              内容：<textarea id="question_content" class="form-control" maxlength="300", rows="3"></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <%= link_to '提交', 'javascript:void(0)', 
+                :id => "question-program-#{@program.id}",
+                :onclick => "program_show.ajax_post_question(#{@program.id}, '#{program_quiz_path(@program)}')",
+                :class => 'btn btn-sm btn-primary' %>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+      <%= render partial: 'login_modal' %>
+
+      <div class="main-content">
+        <%= render partial: 'show_interactives' %>
+        <div class="tabs-block" role="tabpanel">
+          <ul class="nav nav-tabs" id="sticky-spacer" role="tablist">
+            <li role="presentation" class="active"><a href="#intro" id="intro-tab" role="tab" aria-controls="intro" data-toggle="tab">简介</a></li>
+            <li role="presentation"><a href="#comment" id="comment-tab" role="tab" aria-controls="comment" data-toggle="tab">短评 <span><%= @program.comments.size %></span></a></li>
+            <li role="presentation"><a href="#question" id="question-tab" role="tab" aria-controls="question" data-toggle="tab">提问 <span><%= @program.questions.size %></span></a></li>
+          </ul>
+          <div class="tab-content cf" id="program-content">
+            <div role="tabpanel" class="tab-pane fade active in intro-box" id="intro" aria-labelledby="intro-tab">
+              <h2>课程简介</h2>
+              <div class="content">
+                <%= @program.intro %>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade comment-box" id="comment" aria-labelledby="comment-tab">
+              <h2>
+                短评
+                <% if user_signed_in? -%>
+                  <%= link_to '#commentModel', :class => 'btn btn-default pull-right', :data => {:toggle=>"modal"} do %>
+                    <i class="fa fa-pencil-square-o"></i> 发表短评
+                  <% end -%>
+                <% else -%>
+                  <%= link_to '#loginModel', :class => 'btn btn-default pull-right', :data => {:toggle=>"modal"} do %>
+                    <i class="fa fa-pencil-square-o"></i> 发表短评
+                  <% end -%>
+                <% end -%>
+              </h2>
+              <ul id="comment_ul" class="list">
+                <% @program.comments.order('updated_at desc').limit(5).each do |comment| %>
+                  <li id="<%= comment.id %>">
+                    <div class="rank">
+                      <span class="username"><%= User.find(comment.user_id).username %></span>
+                      <span class="star">
+                        <% comment.rank.times do %>
+                          <i class="glyphicon glyphicon-star get"></i>
+                        <% end -%>
+                        <% (5 - comment.rank).times do %>
+                          <i class="glyphicon glyphicon-star"></i>
+                        <% end -%>
+                      </span>
+                    </div>
+                    <div class="content">
+                      <%= comment.content %>
+                    </div>
+                    <div class="create-at"><%= comment.created_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
+                  </li>
+                <% end -%>
+              </ul>
+              <div class="show-all pull-right">
+                <%= link_to comments_path, target: "_blank" do %>
+                  查看所有短评 <i class="glyphicon glyphicon-chevron-right"></i>
+                <% end -%>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade question-box" id="question" aria-labelledby="question-tab">
+              <h2>
+                最新问题
+                <% if user_signed_in? -%>
+                  <%= link_to '#questionModel', :class => 'btn btn-default pull-right', :data => {:toggle=>"modal"} do %>
+                    <i class="fa fa-question"></i> 我要提问
+                  <% end -%>
+                <% else %>
+                  <%= link_to '#loginModel', :class => 'btn btn-default pull-right', :data => {:toggle=>"modal"} do %>
+                    <i class="fa fa-question"></i> 我要提问
+                  <% end -%>
+                <% end -%>
+              </h2>
+              <ul id="question_ul" class="list">
+                <% @program.questions.order('updated_at desc').limit(5).each do |question| %>
+                  <li id="<%= question.id %>">
+                    <div class="content">
+                      <h3 class="question-title"><%= link_to question.title, question %> <span class="replies-num"><%= question.replies.size if question.replies.size > 0 %></span></h3>
+                      <span class="question-user"><%= User.find(question.asker_id).username %></span>
+                      <span class="question-time"><%= question.created_at.strftime("%Y-%m-%d") %></span>
+                    </div>
+                  </li>
+                <% end -%>
+              </ul>
+              <div class="show-all pull-right">
+                <%= link_to questions_path, target: "_blank" do %>
+                  查看所有问题 <i class="glyphicon glyphicon-chevron-right"></i>
+                <% end -%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  (function(){
+    program_show.init();
+
+    <% if @program.live_or_replay == Program::TYPE[:live] -%>
+      /* Edit by DotHide
+      ** 初始化 websocket 组件，并绑定翻页事件
+      ** 2015-03-03
+      **/
+      var socket_addr = "<%= Settings.web_socket_addr %>";
+      var arry = eval($('#live_images').val());
+      programs_control.init(socket_addr, $('#showPPT'), arry);
+      programs_control.events_bind();
+    <% elsif @courseware.time_line.present? -%>
+      program_show.auto_play_ppt(<%= @courseware.time_line %>);
+    <% end -%>
+  })()
+</script>

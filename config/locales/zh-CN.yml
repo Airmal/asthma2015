@@ -1,0 +1,632 @@
+zh-CN:
+  admin:
+    actions:
+      bulk_delete:
+        breadcrumb: "删除多个条目"
+        bulk_link: "删除选中的 %{model_label_plural}"
+        menu: "删除多个条目"
+        title: "删除 %{model_label_plural}"
+      dashboard:
+        breadcrumb: "控制面板"
+        menu: "控制面板"
+        title: "站点管理"
+      delete:
+        breadcrumb: "删除"
+        done: "已删除"
+        link: "删除 '%{object_label}'"
+        menu: "删除"
+        title: "删除 %{model_label} '%{object_label}'"
+      edit:
+        breadcrumb: "编辑"
+        done: "已更新"
+        link: "编辑这个 %{model_label}"
+        menu: "编辑"
+        title: "编辑 %{model_label} '%{object_label}'"
+      export:
+        breadcrumb: "导出"
+        bulk_link: "导出选中的 %{model_label_plural}"
+        done: "已导出"
+        link: "导出找到的 %{model_label_plural}"
+        menu: "导出"
+        title: "导出%{model_label_plural}"
+      history_index:
+        breadcrumb: "操作历史"
+        menu: "操作历史"
+        title: "%{model_label_plural} 的操作历史"
+      history_show:
+        breadcrumb: "操作历史"
+        menu: "操作历史"
+        title: "%{model_label} '%{object_label}' 的操作历史"
+      index:
+        breadcrumb: "%{model_label_plural}"
+        menu: "列表"
+        title: "%{model_label_plural}列表"
+      new:
+        breadcrumb: "新建"
+        done: "已创建"
+        link: "新建%{model_label}"
+        menu: "创建新条目"
+        title: "新建%{model_label}"
+      show:
+        breadcrumb: "%{object_label}"
+        menu: "详情"
+        title: "%{model_label} '%{object_label}'详情"
+      show_in_app:
+        menu: "在应用程序中显示"
+      publish: 
+        menu: "直播"
+        breadcrumb: "直播控制"
+        title: "直播控制"
+      post_purchase: 
+        menu: "邀请码"
+        breadcrumb: "请购邀请码"
+        title: "请购邀请码"
+      submit_purchase: 
+        menu: "审核请购"
+        breadcrumb: "审核请购"
+        title: "审核请购"
+    export:
+      click_to_reverse_selection: "单击以反向选择"
+      confirmation: "以 %{name} 格式导出"
+      csv:
+        col_sep: "栏分隔符"
+        col_sep_help: "留空则使用默认值('%{value}')"
+        default_col_sep: ","
+        encoding_to: "编码"
+        encoding_to_help: "选择输出字符编码。留空则保留当前输入字符编码：(%{name})"
+        header_for_association_methods: "%{name} [%{association}]"
+        header_for_root_methods: "%{name}"
+        skip_header: "无表头"
+        skip_header_help: "不输出表头（即无栏目描述）"
+      display: "显示%{name}: %{type}"
+      empty_value_for_associated_objects: "<空>"
+      fields_from: "%{name} 中的字段"
+      fields_from_associated: "关联的 %{name} 中的字段"
+      options_for: "%{name} 格式选项"
+      select: "选择要导出的字段"
+    flash:
+      error: "%{name} 不能被 %{action}"
+      model_not_found: "找不到模型’%{model}'"
+      noaction: "什么也没做"
+      object_not_found: "找不到序号为'%{id}'的模型%{model}"
+      successful: "成功 %{action} 了 %{name} "
+    form:
+      all_of_the_following_related_items_will_be_deleted: "下列相关条目将被删除或成为孤立条目"
+      are_you_sure_you_want_to_delete_the_object: "确认要删除这个 %{model_name} 么？"
+      basic_info: "基本信息"
+      bulk_delete: "下列对象将被删除，相关对象将被删除或成为孤立条目"
+      cancel: "取消"
+      char_length_of: "长度"
+      char_length_up_to: "最长"
+      confirmation: "是"
+      new_model: "%{name}（新）"
+      one_char: "字符"
+      optional: "可选"
+      required: "必填"
+      save: "保存"
+      save_and_add_another: "保存并新建另一个"
+      save_and_edit: "保存并继续编辑"
+    misc:
+      add_filter: "增加过滤条件"
+      add_new: "新建"
+      ago: "之前"
+      bulk_menu_title: "选中的条目"
+      chose_all: "全选"
+      chosen: "选择了%{name}"
+      clear_all: "全不选"
+      down: "下"
+      filter: "过滤条件"
+      filter_date_format: "月/日/年"
+      log_out: "注销"
+      navigation: "导航"
+      refresh: "刷新"
+      remove: "移除"
+      search: "搜索"
+      show_all: "显示全部"
+      up: "上"
+    table_headers:
+      changes: "改动"
+      created_at: "日期/时间"
+      item: "条目"
+      last_used: "最近使用"
+      message: "消息"
+      model_name: "（数据库）模型名称"
+      records: "记录"
+      username: "用户"
+    home:
+      name: "主页"
+    pagination:
+      next: "后一页 &raquo;"
+      previous: "&laquo; 前一页"
+      truncate: "……"
+  views:
+    pagination:
+      previous: "上页"
+      next: "下页"
+      truncate: "..."
+      last: "最后页"
+      first: "第一页"
+  activerecord:
+    models:
+      user: 用户表
+      users_vs_interactive: 用户互动表
+      user_point: 用户积分表
+      user_action: 用户行为积分规则表
+      reply: 回复表
+      question: 提问表
+      program: 节目表
+      interactive: 节目互动内容表
+      courseware: 节目课件表
+      comment: 短评表
+      appointment: 节目预约表
+      admin: 管理员表
+      invitate: 邀请码表
+      purchase: 请购表
+    attributes:
+      user:
+        email: 邮箱
+        username: 姓名
+        password: 密码
+        mobile: 手机
+        login: 账号
+        office: 科室
+        address: 单位地址
+        company: 单位
+        password_confirmation: 确认密码
+        new_password: 新密码
+        current_password: 当前密码
+        remember_me: 记住登录状态
+        reset_password_token: 重置密码token
+        reset_password_sent_at: 重置密码时间
+        remember_created_at: 创建日期
+        sign_in_count: 登录次数
+        current_sign_in_at: 此次登录时间
+        last_sign_in_at: 上次登录时间
+        current_sign_in_ip: 此次登录ip
+        last_sign_in_ip: 上次登录ip
+        real_name: 用户真实姓名
+        gender: 性别
+        date_of_birth: 出生日期
+        city_id: 省市
+        location_id: 地区
+        hospital_id: 就职医院
+        department_id: 所在科室
+        contact_address: 通讯地址
+        zipcode: 邮政编码
+        specialty: 擅长医术
+        title: 头衔
+        edu_bg: 医疗教育背景
+        bio: 简历
+        signature: 个性签名
+        email_public: Email是否公开
+        mobile_public: 手机是否公开
+        verified: 认证用户
+        state: 用户状态
+        guest: 是否是游客
+        teachable: 是否能教学
+        uploadable: 是否能上传课件
+        comments_count: 评论次数
+        questions_count: 提问次数
+        replies_count: 回复次数
+        favorite_program_ids: 收藏的节目
+        favorite_course_ids: 收藏的课程
+        followed_question_ids: 同问的问题列表
+        invitate_cd: 邀请码CD
+        appointments: 预约
+        programs: 节目
+        users_vs_interactives: 用户互动
+        interactives: 互动
+        comments: 评论
+        coursewares: 课件
+        user_points: 用户积分
+        user_actions: 用户行为
+        questions: 提问
+        replies: 回复
+      xcuser:
+        email: 邮箱
+        name: 姓名
+        phone: 手机号
+        office: 科室
+        company: 单位
+        address: 单位地址
+      appointment:
+        user: 用户 ID
+        program: 节目 ID
+        state: 预约状态
+        invitate_cd: 邀请码CD
+        created_at: 新建时间
+        updated_at: 更新时间
+      program:
+        public_no: 节目编号
+        title: 节目标题
+        preview: 节目预告
+        cover: 封面
+        intro: 简介
+        online_date: 播出时间
+        offline_date: 下线时间
+        live_or_replay: 直播还是录播
+        categories: 学科分类
+        organization: 组织机构
+        speakers: 讲者
+        admin_id: 管理员ID
+        maximum: 人数上限
+        enroll_num: 已报名人数
+        appointments: 预约ID
+        user: 用户ID
+        uploaders: 上传者（用户ID）
+        comments: 评论ID
+        coursewares: 课件ID
+        questions: 提问ID
+        askers: 用户ID(提问者)
+        purchase: 请购ID
+        created_at: 新建时间
+        updated_at: 更新时间
+        users: 用户
+      question:
+        asker: 提问者
+        program: 节目 ID
+        title: 提问标题
+        content: 提问内容
+        state: 问题状态
+        followers: 同问者
+        replies: 回复
+        created_at: 新建时间
+        updated_at: 更新时间
+      reply:
+        replier: 回复者
+        question: 问题 ID
+        content: 回复内容
+        best: 是否最佳
+        state: 状态
+        created_at: 新建时间
+        updated_at: 更新时间
+      user_action:
+        created_at: 新建时间
+        updated_at: 更新时间
+      users_vs_interactive:
+        user: 用户 ID
+        interactive: 节目互动 ID
+        options: 用户选择的所有选项
+        created_at: 新建时间
+        updated_at: 更新时间
+      comment:
+        user: 用户 ID
+        program: 节目 ID
+        content: 短评内容
+        rank: 节目评级
+        state: 短评状态
+      courseware:
+        uploader: 上传者
+        type_of_courseware: 课件类型(1-视频；2-文档；3-同时)
+        name: 课件名称
+        remote_url: 远端地址
+        file_path: 课件MP4上传
+        tags: 课件标签
+        verified: 是否被认证
+        downloadable: 是否可下载
+        point: 所需积分
+        program: 所属节目
+        remote_or_local: 远端或本地（1-远端地址；2-本地路径；3-同时）
+        courseware_file: 课件PDF上传
+        created_at: 新建时间
+        updated_at: 更新时间
+      interactive:
+        type_of_interactive: 互动类型
+        title: 题目
+        selections: 选项
+        answer: 正确答案
+        multiple: 是否多选
+        program_id: 节目ID
+        users_vs_interactives: 用户互动记录ID
+        users: 用户ID
+      user_point:
+        user: 用户ID
+        user_action: 用户行为ID
+        point: 积分分值
+        modulus: 乘以系数
+        modulus_reason: 乘以系数原因
+        created_at: 新建时间
+        updated_at: 更新时间
+      user_action:
+        action_code: 用户行为代码
+        action_name: 用户行为名称
+        point: 积分分值
+        desc: 备注
+        user_points: 用户积分ID
+        users: 用户ID
+        created_at: 新建时间
+        updated_at: 更新时间
+      admin:
+        email: 邮箱
+        title: 节目标题
+        reset_password_sent_at: 重置密码时间
+        remember_created_at: 创建日期
+        sign_in_count: 登录次数
+        current_sign_in_at: 此次登录时间
+        last_sign_in_at: 上次登录时间
+        current_sign_in_ip: 此次登录ip
+        last_sign_in_ip: 上次登录ip
+        created_at: 新建时间
+        updated_at: 更新时间
+        administrator_name: 管理员名字
+        originize_name: 组织机构名称
+        administrator_flg: 管理员区分(0:是；1:否)
+        purchase_id: 请购ID
+        password: 密码
+        password_confirmation: 确认密码
+        purchase: 请购ID
+      invitate:
+        invitate_cd: 邀请码CD
+        invitate_flg: 邀请码区分(0:未发放；1:已发放未使用：2:已使用)
+        issure_time: 发放时间
+        use_time: 使用时间
+        batch: 批次
+        admin_id: 管理员ID
+        program: 节目ID
+        user: 用户ID
+        created_at: 新建时间
+        updated_at: 更新时间
+      purchase:
+        admin: 管理员ID
+        program: 节目ID
+        purchase_flg: 请购状态(0:未请购；1:已请购未审批：2:已审批)
+        num_purchase: 请购数量
+        created_at: 新建时间
+        updated_at: 更新时间
+  date:
+    abbr_day_names:
+    - 周日
+    - 周一
+    - 周二
+    - 周三
+    - 周四
+    - 周五
+    - 周六
+    abbr_month_names:
+    -
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    day_names:
+    - 星期日
+    - 星期一
+    - 星期二
+    - 星期三
+    - 星期四
+    - 星期五
+    - 星期六
+    formats:
+      default: ! '%Y-%m-%d'
+      long: ! '%Y年%b%d日'
+      short: ! '%b%d日'
+    month_names:
+    -
+    - 一月
+    - 二月
+    - 三月
+    - 四月
+    - 五月
+    - 六月
+    - 七月
+    - 八月
+    - 九月
+    - 十月
+    - 十一月
+    - 十二月
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: 大约一小时
+        other: 大约 %{count} 小时
+      about_x_months:
+        one: 大约一个月
+        other: 大约 %{count} 个月
+      about_x_years:
+        one: 大约一年
+        other: 大约 %{count} 年
+      almost_x_years:
+        one: 接近一年
+        other: 接近 %{count} 年
+      half_a_minute: 半分钟
+      less_than_x_minutes:
+        one: 不到一分钟
+        other: 不到 %{count} 分钟
+      less_than_x_seconds:
+        one: 不到一秒
+        other: 不到 %{count} 秒
+      over_x_years:
+        one: 一年多
+        other: ! '%{count} 年多'
+      x_days:
+        one: 一天
+        other: ! '%{count} 天'
+      x_minutes:
+        one: 一分钟
+        other: ! '%{count} 分钟'
+      x_months:
+        one: 一个月
+        other: ! '%{count} 个月'
+      x_seconds:
+        one: 一秒
+        other: ! '%{count} 秒'
+    prompts:
+      day: 日
+      hour: 时
+      minute: 分
+      month: 月
+      second: 秒
+      year: 年
+  devise:
+    confirmations:
+      confirmed: 您的帐号已经确认，请登录.
+      send_instructions: 几分钟后，您将收到确认帐号的电子邮件.
+      send_paranoid_instructions: 如果您的邮箱存在于我们的数据库中，您将收到一封确认账号的邮件.
+    failure:
+      already_authenticated: 您已经登录.
+      inactive: 您还没有激活帐户.
+      invalid: 邮箱或密码错误
+      last_attempt: 你还有多一次尝试正确的密码，过后你的帐户会被锁住
+      locked: 您的帐号已被锁定.
+      not_found_in_database: 邮箱或密码错误
+      timeout: 您已登录超时，请重新登录.
+      unauthenticated: 继续操作前请注册或者登录.
+      unconfirmed: 继续操作前请先确认您的帐号.
+    mailer:
+      confirmation_instructions:
+        subject: 确认信息
+      reset_password_instructions:
+        subject: 重置密码信息
+      unlock_instructions:
+        subject: 解锁信息
+    omniauth_callbacks:
+      failure: 因为%{reason}，所以您无法从%{kind}获得授权.
+      success: 成功地从%{kind}获得授权.
+    passwords:
+      no_token: 您暂时不能访问此页面。您需要通过密码重置邮件中的重置链接来访问此页面，如果您正是通过重置链接访问，请确定链接的正确性。
+      send_instructions: 几分钟后，您将收到重置密码的电子邮件.
+      send_paranoid_instructions: 如果您的邮箱存在于我们的数据库中，您将收到一封找回密码的邮件.
+      updated: 您的密码已修改成功，您现在已登录.
+      updated_not_active: 您的密码已修改成功.
+    registrations:
+      destroyed: 再见！您的帐户已成功注销。我们希望很快可以再见到您.
+      signed_up: 欢迎您！您已注册成功.
+      signed_up_but_inactive: 谢谢您！然而您的账号还未被激活，在这之前无法登陆。
+      signed_up_but_locked: 谢谢您！然而您的账号已被锁定，无法登陆。
+      signed_up_but_unconfirmed: 谢谢您！一封确认邮件已经发至您的邮箱，请点击其中的链接激活您的账号。
+      update_needs_confirmation: 新的账号信息已成功提交，一封确认邮件已经发至您的邮箱，请点击其中的链接以使您的新E-mail地址生效。
+      updated: 帐号资料更新成功.
+    sessions:
+      already_signed_out: 成功的登出
+      signed_in: 登录成功.
+      signed_out: 退出成功.
+    unlocks:
+      send_instructions: 几分钟后，您将收到一封解锁帐号的邮件.
+      send_paranoid_instructions: 如果您的邮箱存在于我们的数据库中，您将收到一封解锁账号的邮件.
+      unlocked: 您的帐号已成功解锁，您现在已登录.
+  errors:
+    format: ! '%{attribute}%{message}'
+    messages:
+      not_saved:
+        one: "因为1个错误导致此%{resource}保存失败:"
+        other: "因为%{count}个错误导致此%{resource}保存失败:"
+      already_confirmed: 已经确认，请重新登录.
+      confirmation_period_expired: 必须在 %{period} 以内确认，请重新申请
+      expired: 您已过期，请重新申请
+      not_found: 没有找到
+      not_locked: 未锁定
+      accepted: 必须是可被接受的
+      blank: 不能为空字符
+      present: 必须是空白
+      confirmation: 与确认值不匹配
+      empty: 不能留空
+      equal_to: 必须等于 %{count}
+      even: 必须为双数
+      exclusion: 是保留关键字
+      greater_than: 必须大于 %{count}
+      greater_than_or_equal_to: 必须大于或等于 %{count}
+      inclusion: 不包含于列表中
+      invalid: 是无效的
+      less_than: 必须小于 %{count}
+      less_than_or_equal_to: 必须小于或等于 %{count}
+      not_a_number: 不是数字
+      not_an_integer: 必须是整数
+      odd: 必须为单数
+      record_invalid: ! '验证失败: %{errors}'
+      restrict_dependent_destroy:
+        one: 由于 %{record} 需要此记录，所以无法移除记录
+        many: 由于 %{record} 需要此记录，所以无法移除记录
+      taken: 已经被使用
+      too_long:
+        one: 过长（最长为一个字符）
+        other: 过长（最长为 %{count} 个字符）
+      too_short:
+        one: 过短（最短为一个字符）
+        other: 过短（最短为 %{count} 个字符）
+      wrong_length:
+        one: 长度非法（必须为一个字符）
+        other: 长度非法（必须为 %{count} 个字符）
+      other_than: 长度非法（不可为 %{count} 个字符
+    template:
+      body: 如下字段出现错误：
+      header:
+        one: 有 1 个错误发生导致「%{model}」无法被保存。
+        other: 有 %{count} 个错误发生导致「%{model}」无法被保存。
+  helpers:
+    select:
+      prompt: 请选择
+    submit:
+      create: 新增%{model}
+      submit: 储存%{model}
+      update: 更新%{model}
+  number:
+    currency:
+      format:
+        delimiter: ! ','
+        format: ! '%u %n'
+        precision: 2
+        separator: .
+        significant: false
+        strip_insignificant_zeros: false
+        unit: CN¥
+    format:
+      delimiter: ! ','
+      precision: 3
+      separator: .
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: ! '%n %u'
+        units:
+          billion: 十亿
+          million: 百万
+          quadrillion: 千兆
+          thousand: 千
+          trillion: 兆
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 1
+        significant: false
+        strip_insignificant_zeros: false
+      storage_units:
+        format: ! '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ! ', 和 '
+      two_words_connector: ! ' 和 '
+      words_connector: ! ', '
+  time:
+    am: 上午
+    formats:
+      default: ! '%Y年%b%d日 %A %H:%M:%S %Z'
+      long: ! '%Y年%b%d日 %H:%M'
+      short: ! '%b%d日 %H:%M'
+    pm: 下午

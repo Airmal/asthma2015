@@ -1,0 +1,76 @@
+<div class="">
+  <div id="<%= get_page_id('questions', '') %>" class="container">
+
+    <div id="rContent" class="question-show">
+      <div class="main-content container">
+        <div class="tab-content">
+          <div class="question-head">
+            <h1><%= @question.title %></h1>
+            <div class="question-info">
+              <%= link_to 'javascript:void(0)' do %>
+                <%= User.find(@question.asker_id).username %>
+              <% end -%>
+              &nbsp;·&nbsp;
+                <%= @question.updated_at.strftime("%Y.%m.%d %R") %>
+              &nbsp;·&nbsp;
+              <span id="allQuestNum" class="flotright c-number"><%= @question.replies.length %>条回复</span>
+            </div>
+          </div>
+          <div class="question-body">
+            <p><%= @question.content %></p>
+          </div>
+        </div>
+        <div class="replies">
+          <ul class="list">
+            <% @question.replies.order('best desc, updated_at desc').each_with_index do |reply, i| %>
+              <% if reply.exists_best_reply? && reply.best?%>
+                <li class="best">
+                  <h2>最佳答案</h2>
+                  <div class="content">
+                    <div class="reply-user"><%= reply.replier.username %></div>
+                    <div class="reply-content"><%= reply.content %></div>
+                    <div class="reply-time"><%= reply.updated_at.strftime("%Y.%m.%d %R") %></div>
+                  </div>
+                </li>
+              <% else -%>
+                <li>
+                  <div class="content">
+                    <div class="reply-user"><%= reply.replier.username %></div>
+                    <div class="reply-content"><%= reply.content %></div>
+                    <div class="reply-time"><%= reply.updated_at.strftime("%Y.%m.%d %R") %></div>
+                  </div>
+                  <% if !reply.exists_best_reply? %>
+                    <% if user_signed_in? && current_user.id == @question.asker_id %>
+                      <%= link_to '选为最佳', 'javascript:void(0)', :class => 'btn btn-sm btn-default', :id => 'reply_post', :onclick => "questions_index.ajax_post_best_reply(#{reply.id}, '#{best_reply_path}')"%> 
+                    <% end -%>
+                  <% end -%>
+                </li>
+              <% end -%>
+            <% end %>
+          </ul>
+        </div>
+        <div class="new-reply row">
+          <div class="col-md-10"> <textarea id="reply_content" class="form-control" maxlength="300", rows="3"></textarea></div>
+          <% if user_signed_in? -%>
+            <div class="col-md-2 "><%= link_to '提交回复', 'javascript:void(0)', :class => 'btn btn-primary submit-button', :id => 'reply_post', :onclick => "questions_index.ajax_post_reply(#{@question.id}, '#{new_reply_path}')"%> 
+            </div>
+          <% else %>
+            <div class="col-md-2 submit-button">
+              <%= link_to '#loginModel', :class => 'btn btn-sm btn-primary', :data => {:toggle=>"modal"} do %>
+                <i class=""></i>提交回复
+              <% end -%>
+            </div>
+          <% end -%>
+          <div class="col-md-12 helpblock">
+            <ul>
+              <li>支持表情，见 <a href="http://www.emoji-cheat-sheet.com" target="_blank" rel="nofollow">Emoji cheat sheet</a></li>
+              <li>注意单词拼写，以及中英文排版，<a href="https://github.com/sparanoid/chinese-copywriting-guidelines" target="_blank">参考此页</a>
+            </li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<%= render partial: 'programs/login_modal' %>

@@ -1,0 +1,31 @@
+<div id="page-container" class="wrapper">
+  <div class="page-canvas">
+    <div class="signin-wrapper">
+      <h2></h2>
+      <div id="dinNote" style="text-align:center;color:darkgreen">
+      </div>
+      <%= simple_form_for resource, as: resource_name, wrapper: 'vertical_form',
+        html: { id: 'signin-form', class: 'normal-form', onsubmit: 'return devise_signup.validateForm()' }, url: session_path(resource_name) do |f| %>
+        <%= f.input :login, required: true, autofocus: true, placeholder: "邮箱/姓名/手机号" %>
+        <%= f.input :password, required: true %>
+        <% if devise_mapping.rememberable? -%>
+          <div class="form-group checkbox optional">
+              <div class="inputs-list"><label for="user_remember_me"><%= f.check_box :remember_me, style: "width:auto;" %> <%= t("activerecord.attributes.user.remember_me") %></label></div>
+          </div>
+        <% end -%>
+        <hr>
+        <div class="form-group">
+          <%= f.submit "登录", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+    <div class="clearfix underline">
+      <p class="signup-helper">
+        首次使用?
+        <%= link_to new_registration_path(resource_name) do %>
+          立即注册 <i class="glyphicon glyphicon-chevron-right"></i>
+        <% end -%>
+      </p>
+    </div>
+  </div>
+</div>

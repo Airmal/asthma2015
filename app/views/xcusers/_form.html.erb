@@ -1,0 +1,29 @@
+
+<div id="ym-reg" class="page-container wrapper">
+  <div class="page-canvas">
+    <div class="signup-wrapper">
+      <h2>注册</h2>
+<%= simple_form_for(@xcuser,  html: {  onsubmit: 'return xcuser.validateForm()' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, required: true, autofocus: true   %>
+    <%= f.input :phone, required: true , maxlength: 11 , :error => false %>
+    <%= f.input :email, required: true, placeholder: "admin@mail.com", :error => false  %>
+    <%= f.input :company, required: true %>
+    <%= f.input :office, required: true %>
+    <%= f.input :address , required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.button :submit, "注册", id: 'btn-reg', class: 'btn btn-primary signup-btn' %>
+    <h2>
+      <span class="signin-helper">  
+        已有账号？ 
+        <%= link_to '立即登录', login_path %> <i class="glyphicon glyphicon-chevron-right"></i>
+      </span>
+   </h2>
+   </div>
+  <% end %>
+    </div>
+  </div>
+</div>

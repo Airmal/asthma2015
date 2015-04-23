@@ -1,0 +1,42 @@
+<ul class='program-list'>
+  <% @programs.each do |program| %>
+  <li class="cf image_cover">
+    <div class="img pull-left">
+      <%= link_to program do %>
+        <%= image_tag program.cover, width: 250 %>
+      <% end -%>
+    </div>
+    <div class="pull-left center">
+      <p class="speaker"><%= program.organization %> <%= program.speakers.join('、') %></p>
+      <h3> <%= link_to program.title, program %> </h3>
+      <p class="content">
+        <%= program.intro %>
+      </p>
+    </div>
+    <div class="pull-left right">
+      <% if (program.online_date > Time.now) && ((program.online_date - Settings.appointment_exdate.days) < Time.now) %>
+      <p class="green"><%= "即将上线" %></p>
+      <% if user_signed_in? && (program.appoint_state_by_user(current_user.id) == Appointment::STATE[:normal] ) %>
+      <p class="appoint-success"><i class='fa fa-check-circle'></i> 您已预约</p>
+      <%= link_to 'javascript:void(0)', 
+      :id => "appointment-program-#{program.id}-unappoint",
+      :onclick => "programs_index.ajax_post_unappoint(#{program.id}, '#{program_unappoint_path(program)}')",
+      :class => 'btn btn-sm btn-danger' do %>
+      取消预约
+      <% end %>
+      <% else %>
+      <p class="appoint-success"></p>
+      <%= link_to 'javascript:void(0)', 
+      :id => "appointment-program-#{program.id}-appoint",
+      :onclick => "programs_index.ajax_post_appoint(#{program.id}, '#{program_appoint_path(program)}')",
+      :class => 'btn btn-sm btn-default' do %>
+      <i class="glyphicon glyphicon-plus"></i> 预约报名
+      <% end %>
+      <% end %>
+      <% end %>
+    </div>
+  </li>
+  <% end %>
+</ul>
+<!-- 分页 -->
+<%= paginate @programs, :remote => false %>

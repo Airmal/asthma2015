@@ -1,0 +1,26 @@
+<div class="user-fade">
+  <h2>我的短评</h2>
+  <ul id="all_comments_ul" class="list">
+    <% current_user.comments.each do |comment| %>
+      <li id="<%= comment.id %>">
+        <div class="title">
+          <%= link_to comment.program.title, comment.program %>
+        </div>
+        <div class="rank">
+          <span class="star">
+            <% comment.rank.times do %>
+              <i class="glyphicon glyphicon-star get"></i>
+            <% end -%>
+            <% (5 - comment.rank).times do %>
+              <i class="glyphicon glyphicon-star"></i>
+            <% end -%>
+          </span>
+        </div>
+        <div class="content">
+          <%= comment.content %>
+          <div class="info"><%= comment.updated_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
+        </div>
+      </li>
+    <% end -%>
+  </ul>
+</div>

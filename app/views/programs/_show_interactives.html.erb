@@ -1,0 +1,36 @@
+<div id="interactives_list" class="interactives_list" style="background-color: #fff;border: 1px solid #eee;margin-bottom: 10px;padding: 5px 20px;display:none">
+	<div style="font-size: 22px;">互动问题</div>
+  <% @interactives.each do |interactive| %>
+  	<div class="content" style="line-height: 30px;margin-left: 15px;">
+  		<div style="font-size: 16px;"><%= interactive.title %></div>
+  		<% if interactive.type_of_interactive == Interactive::TYPE[:choices] %>
+  			<% interactive.selections.each_with_index do |selection, i| %>
+  				<%= radio_button_tag('selection', selection) %>
+  				<%= label_tag('selection', selection, :style => "font-weight: normal;") %>&nbsp;&nbsp;
+  			<% end -%>
+  		<% else %>
+  			<% interactive.selections.each_with_index do |selection, i| %>
+  				<%= check_box_tag('selection', selection, false) %>
+  				<%= label_tag('selection', selection, :style => "font-weight: normal;") %>&nbsp;&nbsp;
+  			<% end -%>
+      <% end -%>
+  	</div>
+	  <div style="text-align: right">
+      <% if user_signed_in? -%>
+			  <%= link_to 'javascript:void(0)', 
+			    :id => "post-interactives",
+			    onclick: "program_show.ajax_post_interactive(#{interactive.id})", 
+			    :class => 'btn btn-md btn-primary' do %>
+			      <span class="text">提交</span>
+			  <% end -%>
+      <% else -%>
+			  <%= link_to '#loginModel', 
+			    :id => "post-interactives",
+			    :class => 'btn btn-md btn-primary',
+			    :data => {:toggle=>"modal"} do %>
+			      <span class="text">提交</span>
+			  <% end -%>
+      <% end -%>
+	  </div>
+  <% end -%>
+</div>

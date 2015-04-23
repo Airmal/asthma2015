@@ -1,0 +1,61 @@
+<!-- <div class="wrap program-stage live_play_height"> -->
+  <div class="scroll-stage cf live_play_height">
+    <%= hidden_field_tag 'live_images', @live_images.to_json %>
+    <div class="img pull-left">
+      <% if @program.live_or_replay == Program::TYPE[:live]  -%>
+        <% if @courseware.nil? || @courseware.remote_url.nil? -%>
+          <%= image_tag @program.cover,id:"mep_0", class: 'img-thumbnail',style:"width: 368px;height: 225px;" %>
+        <% else %>
+          <iframe src="<%= @courseware.remote_url %>" width="368px" height="225px" marginwidth=0 marginheight=0 frameborder="no" scrolling="yes" style="border-width:0px; "></iframe>
+        <% end -%>
+      <% else %>
+        <% if @courseware.nil? || @courseware.file_path.nil? -%>
+          <%= image_tag @program.cover,id:"mep_0", class: 'img-thumbnail',style:"width: 368px;height: 225px;" %>
+        <% else %>
+          <div style="width:368px;height:225px;" >
+            <%= video_tag @courseware.file_path, id:'replay_video', poster: @program.cover, controls: true, :class => 'video-js vjs-default-skin', width:'100%', height:'100%' %>
+          </div>
+        <% end -%>
+      <% end -%>
+      <div class="movie-b heightb">
+        <h4 class="text-blue"><%= @program.title %></h4>
+        <p><%= @program.intro %></p>
+      </div>
+      <%= link_to 'javascript:void(0)', 
+        :class => 'btn btn-lg btn-default show-prev' do %>
+        <span class="text">返回前页</span>
+      <% end -%>
+    </div>
+
+    <div class="content pull-left">
+      <!--  PPT  -->
+      <div class="flotright width-75">
+        <div class="ppt-a">
+          <%= image_tag 'default_pdf_image.jpg', id:"showPPT", style:"max-height:400px" %>
+          <div id="ppt-b" class="ppt-b">
+            <span class="ppt-c">
+              <%= link_to image_tag("logo02.png"), 'javascript:void(0)',
+                  :id => "program_show_last_page",
+                  onclick: "program_show.chgImg('0')" %></span>
+            <ul id="ul_preview_pages">
+             <li id="li_1" class="select-image"><%= link_to image_tag("", :id => "page_li_1"), 'javascript:void(0)',
+                  :id => "li_a_1",
+                  onclick: "program_show.display_clicked_page('page_li_1')" %></li>
+             <li id="li_2"><%= link_to image_tag("", :id => "page_li_2"), 'javascript:void(0)',
+                  :id => "li_a_2",
+                  onclick: "program_show.display_clicked_page('page_li_2')" %></li>
+             <li id="li_3"><%= link_to image_tag("", :id => "page_li_3"), 'javascript:void(0)',
+                  :id => "li_a_3",
+                  onclick: "program_show.display_clicked_page('page_li_3')" %></li>
+            </ul>
+            <span class="ppt-d">
+              <%= link_to image_tag("logo03.png"), 'javascript:void(0)',
+                  :id => "program_show_next_page",
+                  onclick: "program_show.chgImg('1')" %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+ <!-- </div> -->

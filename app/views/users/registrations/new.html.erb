@@ -1,0 +1,41 @@
+<div id="ym-reg" class="page-container wrapper">
+  <div class="page-canvas">
+    <div class="signup-wrapper">
+      <h2>
+        <span class="signin-helper">
+          已有账号？
+          <%= link_to session_path(resource_name) do %>
+            立即登录 <i class="glyphicon glyphicon-chevron-right"></i>
+          <% end -%>
+        </span>
+      </h2>
+      <%= simple_form_for(resource, as: resource_name, wrapper: 'vertical_form',
+         html: { id: 'signup-form', class: 'normal-form', onsubmit: 'return devise_signup.validateForm()' }, url: registration_path(resource_name)) do |f| %>
+        <%= f.input :username, required: true, autofocus: true, hint: '请输入您的姓名。', :error => false %>
+        <%= f.input :email, required: true, hint: '请填写最常用的邮箱。', placeholder: "admin@mail.com", :error => false %>
+        <%= f.input :company, required: true, hint: '请输入您的单位。', :error => false %>
+        <%= f.input :office, required: true, hint: '请输入您的科室。', :error => false %>
+        <%= f.input :address, required: true, hint: '请输入您的单位地址。', :error => false %>
+        <%= f.input :mobile, required: true, :error => false do %>
+          <div class="input-group">
+            <div class="input-group-addon">+86</div>
+            <input class="mobile optional form-control pull-left" maxlength="11" type="phone" name="user[mobile]" id="user_mobile" style="width: 330px;">
+            <p class="help-block help-block-right pull-left">请输入有效的11位手机号码。</p>
+          </div>
+        <% end -%>
+        
+         <hr>
+        <div class="form-group">
+          <%= f.button :submit, "注册", id: 'btn-reg', class: 'btn btn-primary signup-btn' %>
+        </div>
+        <div class="signup-info">
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script>
+  (function(){
+    devise_signup.init(); 
+  })()
+</script>

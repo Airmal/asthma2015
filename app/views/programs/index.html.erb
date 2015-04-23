@@ -1,0 +1,26 @@
+<div class="bg-gray">
+  <div id="<%= get_page_id('programs', 'index') %>" class="container">
+    <div class="search-wrap">
+      <div class="search-web cf">
+        <div class="pull-left">
+          <div class="search">
+            <i class="fa fa-lg fa-search"></i>
+            <input id="programs-search" class="text" type="text" value="" autocomplete="off" placeholder="查找节目名称、标签、关键字...">
+          </div>
+        </div>
+        <div class="pull-right"></div>
+      </div>
+    </div>
+    <div id="program-list">
+      <%= render :partial => 'program_list', locals: { programs: @programs } %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  (function(){
+    $('#programs-search').searchbox({
+      url: '/sp',
+      param: 'q'
+    });
+  })()
+</script>

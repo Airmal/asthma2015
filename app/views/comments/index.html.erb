@@ -1,0 +1,32 @@
+<div class="bg-gray">
+  <div id="<%= get_page_id('comments', 'index') %>" class="container">
+    <div class="comment-index">
+      <div class="main-content container">
+        <div class="tab-content">
+          <h2 class="modal-title" id="myModalLabel">全部短评</h2>
+          <ul id="all_comments_ul" class="list">
+            <% @comments.each do |comment| %>
+              <li id="<%= comment.id %>">
+                <div class="rank">
+                  <span class="username"><%= User.find(comment.user_id).username %></span>
+                  <span class="star">
+                    <% comment.rank.times do %>
+                      <i class="glyphicon glyphicon-star get"></i>
+                    <% end -%>
+                    <% (5 - comment.rank).times do %>
+                      <i class="glyphicon glyphicon-star"></i>
+                    <% end -%>
+                  </span>
+                </div>
+                <div class="content">
+                  <%= comment.content %>
+                </div>
+                <div class="create-at"><%= comment.created_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
+              </li>
+            <% end -%>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

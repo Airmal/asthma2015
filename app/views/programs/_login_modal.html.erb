@@ -1,0 +1,36 @@
+<!-- 登录模态框（Modal） -->
+<div class="modal fade" id="loginModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-login">
+    <div class="modal-content">
+      <div id="page-container" class="wrapper">
+        <div class="page-canvas">
+          <div class="signin-wrapper">
+            <h2 class="align-center">登录云医（YunMed）</h2>
+            <div id="dinNote" style="text-align:center;color:darkgreen">
+            </div>
+            <%= simple_form_for :user, as: :user, wrapper: 'vertical_form',
+              html: { id: 'signin-form', class: 'normal-form' }, url: session_path(:user) do |f| %>
+              <%= f.input :login, label: '账号', required: true, autofocus: true, placeholder: "邮箱/用户名/手机号" %>
+              <%= f.input :password, label: '密码', required: true %>
+              <hr>
+              <div class="form-group align-center">
+                <%= f.submit "登录", class: 'btn btn-primary btn-width-80' %>
+              </div>
+            <% end %>
+          </div>
+          <div class="clearfix underline">
+            <p class="signup-helper">
+              首次使用云医（YunMed）？
+              <%= link_to new_registration_path(:user) do %>
+                立即注册 <i class="glyphicon glyphicon-chevron-right"></i>
+              <% end -%>
+            </p>
+            <p class="forget-pass">
+              忘记密码？点击此处 <%= link_to "找回密码？", new_password_path(:user), class: 'forget-pass' %><br />
+            </p>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
