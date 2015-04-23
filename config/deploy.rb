@@ -15,7 +15,7 @@ set :term_mode, :system
 set :domain, '115.29.146.154'
 set :deploy_to, "/home/apps/rails_projects/#{app_name}"
 set :repository, 'https://github.com/DotHide/asthma2015.git'
-set :branch, 'zsc_0422_xiaochuan'
+set :branch, 'master'
 set :app_path,  "#{deploy_to}/current"
 set :rails_env, "production"
 
