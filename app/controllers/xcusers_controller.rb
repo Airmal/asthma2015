@@ -11,6 +11,11 @@ class XcusersController < ApplicationController
   # GET /xcusers/1.json
   def show
     # 登陆成功
+    @xcuser = User.find(params[:id])
+  end
+
+  def live
+    @xcuser = User.find_by_phone(params[:xcuser][:phone])
   end
 
   # GET
@@ -21,11 +26,11 @@ class XcusersController < ApplicationController
   def login_commit
     name = params[:xcuser][:name]
     mobile = params[:xcuser][:phone]
-    xcuser = Xcuser.find_by phone: params[:xcuser][:phone]
-    if xcuser.nil? || xcuser.name != name
+    @xcuser = Xcuser.find_by phone: params[:xcuser][:phone]
+    if @xcuser.nil? || @xcuser.name != name
       render :login
     else
-      render :show
+      render :live
     end
 
   end
@@ -48,7 +53,7 @@ class XcusersController < ApplicationController
       if Xcuser.all.size >= 300
           format.html { render :new }
           format.json { render json: @xcuser.errors, status: :unprocessable_entity }
-      else  
+      else
           if @xcuser.save
             format.html { redirect_to @xcuser, notice: 'Xcuser was successfully created.' }
             format.json { render :show, status: :created, location: @xcuser }
