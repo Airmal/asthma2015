@@ -56,7 +56,7 @@ class XcusersController < ApplicationController
       else
           if @xcuser.save
             format.html { redirect_to @xcuser, notice: 'Xcuser was successfully created.' }
-            format.json { render :show, status: :created, location: @xcuser }
+            format.json { render :live, status: :created, location: @xcuser }
           else
             format.html { render :new }
             format.json { render json: @xcuser.errors, status: :unprocessable_entity }
